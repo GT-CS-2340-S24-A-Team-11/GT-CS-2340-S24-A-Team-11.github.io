@@ -6,77 +6,77 @@
     <!-- Anti-SEO Activate -->
     <meta name="robots" content="noindex">
     <title>CS 2340 Project Writeup</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>CS 2340 Group 11</h1>
-    
-    <table>
-        <tr>
-            <th>Section</th>
-        </tr>
-        <tr>
-            <!-- <td>Introduction</td> -->
-            <td><a href="#introduction">Introduction</a></td>
-        </tr>
-        <tr>
-            <!-- <td>Design and Architecture</td> -->
-            <td><a href="#design-and-architecture">Design and Architecture</a></td>
-        </tr>
-        <tr>
-            <!-- <td>UI Interface</td> -->
-            <td><a href="#ui-interface">UI Interface</a></td>
-        </tr>
-        <tr>
-            <!-- <td>Functionality</td> -->
-            <td><a href="#functionality">Functionality</a></td>
-        </tr>
-        <tr>
-            <!-- <td>Conclusions and Reflections/Learning</td> -->
-            <td><a href="#conclusions-and-reflections-learning">Conclusions and Reflections/Learning</a></td>
-        </tr>
-        <tr>
-            <!-- <td>Contributors</td> -->
-            <td><a href="#contributors">Contributors</a></td>
-        </tr>
-    </table>
+    <ol>
+        <!-- <li>Introduction</li>
+        <li>Design and Architecture</li>
+        <li>UI Interface</li>
+        <li>Functionality</li>
+        <li>Conclusions and Reflections/ Learning</li>
+        <li>Contributors: Dahyun, Aishani, Saketh, Anuj and Vansh</li> -->
+        <li><a href="#Introduction">Introduction</a></li>
+        <li><a href="#Design and Architecture">Design and Architecture</a></li>
+        <li><a href="#UI Interface">UI Interface</a></li>
+        <li><a href="#Functionality">Functionality</a></li>
+        <li><a href="#Conclusions and Reflections Learning">Conclusions and Reflections/ Learning</a></li>
+        <li><a href="#Contributors">Contributors</a></li>
+    </ol>
 
-    <h2 id="introduction">Introduction</h2>
+    <h2 id="Introduction">Introduction</h2>
     <p>The Greenplate app serves as a way to allow the user to effectively manage their meals while meeting their calorie goals. The app is beneficial for those wanting to adopt a healthier lifestyle and develop a sustainable diet with ingredients and recipes that are readily available to the user. The app simplifies the organizational process involving various recipes, allowing the user to focus on making food that meets their caloric goals and their grocery shopping. The app promotes sustainable food management by assisting the user in purchasing ingredients based on their caloric goals and desired meals. This mitigates food wastage while promoting a healthier lifestyle.</p>
 
-    <!-- <h2>Design and Architecture</h2> -->
-    <h2 id="design-and-architecture">Design and Architecture</h2>
+    <h2 id="Design and Architecture">Design and Architecture</h2>
     <p>Our app follows the MVVM architecture which stands for Model View ViewModel architecture. This architecture is used for full-stack applications that have a UI component and a backend logic component and helps with separating the two parts. This model is popular on many full stack applications especially mobile applications like Android Studio, which is what we used for our framework. The model represents the backend logic of the code, the view represents the frontend UI elements, and the ViewModel is the middle-man that connects both parts to create an effective app. One example when a button is clicked, the ViewModel will gather that data on the view and translate the backend logic of the button function to the data model.</p>
-    <p><strong>The following here is our Design Class Diagram:</strong></p>
-    <img src="path_to_design_class_diagram.jpg" alt="Design Class Diagram">
-    
-    <p>1. (SD) Log Meal Main success scenario: A registered app user logs in with their account into GreenPlate and enters the meal with the calculated calories they want to track on the Input Meal screen. The system takes the meal, its expected calorie count, and the date it was logged and stores it in the user’s account for the user to track and updates the daily calorie intake by the calorie count of the meal logged.</p>
+    <p>The following here is our Design Class Diagram:</p>
+    <img src="images/Sprint4DCD.png" alt="Design Class Diagram">
+
+    <h3>Sequence Diagram: Log Meal</h3>
+    <p>Main success scenario: A registered app user logs in with their account into GreenPlate and enters the meal with the calculated calories they want to track on the Input Meal screen. The system takes the meal, its expected calorie count, and the date it was logged and stores it in the user’s account for the user to track and updates the daily calorie intake by the calorie count of the meal logged.</p>
     <p>Alternate scenarios:</p>
     <ul>
         <li>If an app user leaves either the email or password blank, the system will prompt them with a message indicating that one or more fields were empty.</li>
-        <li>If an app user does not log in with the valid account information, the Firebase authentication system will prompt them with a message stating authentication failure.</li>
+        <li>If an app user does not log in with valid account information, the Firebase authentication system will prompt them with a message stating authentication failure.</li>
         <li>If the meal calorie is not a valid number, the system will prompt the user to input a valid, nonnegative calorie count.</li>
     </ul>
-    <img src="path_to_sequence_diagram_SD1.jpg" alt="Sequence Diagram SD1">
+    <img src="images/SD1.png" alt="Sequence Diagram 1">
 
-    <h3>GRASP: Ingredients Class</h3>
-    <p>Ingredients class is a clear example of the information expert. All the attributes relating to a particular ingredient such as its name, quantity, caloriesperServing and expiration date are set in this class. These attributes can also be retrieved using the getter methods also defined in the class.</p>
-    <img src="path_to_grasp1_image.jpg" alt="GRASP1 Image">
+    <p>We implemented the Firebase Authentication class as the singleton class in order to ensure that there was only one globally accessible, centralized point of accessing authentication features across all users. This helps maintain the consistency of authentication behavior and reusability for our app because we do not need to create new connections to external Firebase services at every sign-up request, which also reduces inconsistencies that could potentially lead to errors. Because it only needs to be created once, this also allows our app to save time and resources to perform its other functionality.</p>
+    <img src="images/firebaseSingleton.png" alt="Firebase Singleton Diagram">
 
-    <!-- <h2>UI Interface</h2> -->
-    <h2 id="ui-interface">UI Interface</h2>
+    <h3>(GRASP): Ingredients Class</h3>
+    <p>Ingredients class is a clear example of the information expert. All the attributes relating to a particular ingredient such as its name, quantity, calories per serving, and expiration date are set in this class. These attributes can also be retrieved using the getter methods also defined in the class. Encapsulation of Data: The `Ingredient` class encapsulates its data, including `name`, `quantity`, `caloriesPerServing`, and `expirationDate`, defining what an ingredient is in the application context. Providing Access Through Methods: The class provides methods to access its properties (`getName()`, `getQuantity()`, `getCaloriesPerServing()`, `getExpirationDate()`) and a method to modify its state `setQuantity()`, allowing interaction without exposing internal details.</p>
+    <img src="images/GRASP1.png" alt="GRASP1 Diagram">
 
-    <!-- <h2>Functionality</h2> -->
-    <h2 id="functionality">Functionality</h2>
+    <h2 id="UI Interface">UI Interface</h2>
+    <p>After the splash screen the user is introduced to the login page where the user can log into their account or create their own account with an email and a password.</p>
+    <img src="images/LoginScreenSC.png" alt="Login Screen">
 
-    <!-- <h2>Conclusions and Reflections/Learning</h2> -->
-    <h2 id="conclusions-and-reflections-learning">Conclusions and Reflections/Learning</h2>
+    <p>After logging in, the user is led to a home screen where they can navigate to see what ingredients they have in the pantry, shop for ingredients, make or search up recipes, and cook meals from recipes.</p>
+    <img src="images/HomeScreenSC.png" alt="Home Screen">
+
+    <p>When clicking on the Personal Information button, users will be led to a screen where they can enter their height, weight, and gender to be stored.</p>
+    <img src="images/PersonalInfoSC.png" alt="Personal Information Screen">
+
+    <p>In the ingredients screen, users can add any ingredients and view the list of ingredients they have available in their pantry. The recipes can look at what ingredients are available in the pantry and determine whether it can be cooked or not.</p>
+    <img src="images/IngredientScreenSC.png" alt="Ingredient Screen">
+
+    <p>The recipe holds all recipes that every user can add and be viewed globally. Each recipe has a list of ingredients and has an indication of whether there are enough ingredients in the pantry to cook the recipe. Users have the option to buy missing ingredients if there aren’t enough or cook the recipe if there are enough ingredients. Cooking the recipe will result in the ingredients and the respective quantities to be subtracted from the pantry.</p>
+    <img src="images/RecipeScreenSC.png" alt="Recipe Screen">
+
+    <p>In the shopping list screen, users can shop for ingredients and add it to cart which will be added to the scrollable list. Once the user is satisfied with the ingredients they added. They can click on the buy button and it will add those items to the pantry. Users can add items buy clicking the add button and a popup will show up which will prompt the user of the item they want to add, the quantity, calories and expiration date.</p>
+    <img src="images/ShoppingListScreenSC.png" alt="Shopping List Screen">
+    <img src="images/PopupScreenSC.png" alt="Popup Screen">
+
+    <h2 id="Functionality">Functionality</h2>
+    <h2 id="Conclusions and Reflections Learning">Conclusions and Reflections/ Learning</h2>
     <p>Through this project, our group was able to practice design patterns through the Android App project. Here were some of the contributions of our members:</p>
-    <ul>
-        <li>Dahyun & Aishani: A lot of UI troubleshooting, insert specific items here</li>
-        <li>Anuj & Vansh: Splash screens, diagramming, website content</li>
-        <li>Saketh: Nontechnical tasks, Website infrastructure, git troubleshooting</li>
-    </ul>
-    <p>We encountered several problems throughout this project. Here are some specific instances:</p>
+    <p>Dahyun & Aishani: A lot of UI work, Firebase integration, backend logic</p>
+    <p>Anuj & Vansh: Splash screens, diagramming, website content</p>
+    <p>Saketh: Nontechnical tasks, Website infrastructure, git troubleshooting</p>
+    <p>We encountered several problems throughout this project. Here are some specific instances</p>
     <ul>
         <li>Integrating our ShoppingList Backend with our UI</li>
         <li>Following MVVM design architecture during Sprint 1</li>
@@ -84,7 +84,8 @@
     </ul>
     <p>But by overcoming these challenges, we have learned how to more effectively communicate and plan sprints together as a team.</p>
 
-    <!-- <h2>Contributors: Dahyun, Aishani, Saketh, Anuj, and Vansh</h2> -->
-    <h2 id="contributors">Contributors: Dahyun, Aishani, Saketh, Anuj, and Vansh</h2>
+    <h2 id="Contributors">Contributors</h2>
+    <p>Dahyun, Aishani, Saketh, Anuj and Vansh</p>
 </body>
+
 </html>
