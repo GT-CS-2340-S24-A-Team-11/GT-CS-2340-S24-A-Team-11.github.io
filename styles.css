@@ -31,10 +31,3 @@ img {
     margin-right: auto;
 } */
 
-iframe {
-    position: absolute;
-    margin: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
